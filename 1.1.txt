@@ -1,0 +1,6 @@
+SELECT Count(DISTINCT(CustomerID)) AS 'New_Customer_in_1997' 
+   FROM Orders
+  WHERE CustomerID NOT IN 
+	(SELECT DISTINCT(CustomerID) 
+	   FROM 'Orders'
+	  WHERE strftime('%Y',OrderDate) = '1996')

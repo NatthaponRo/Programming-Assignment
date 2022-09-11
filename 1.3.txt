@@ -1,0 +1,16 @@
+SELECT P.SupplierID,
+       CompanyName,
+       COUNT(P.SupplierID) AS Supplier_most_shipping_1997
+   FROM 'Order Details' AS OD
+         LEFT JOIN Products AS P
+         ON od.ProductID = p.ProductID
+
+         LEFT JOIN Orders as O
+	 ON OD.OrderID = O.OrderID
+
+	 LEFT JOIN Suppliers as S
+	 ON S.Supplierid = P.SupplierID
+ WHERE strftime('%Y',o.OrderDate) = '1997'
+ GROUP BY S.SupplierID
+ ORDER BY supplier_most_shipping_1997 DESC
+ LIMIT 5
